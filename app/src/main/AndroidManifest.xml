@@ -14,7 +14,7 @@
         tools:targetApi="31">
         <activity
             android:name=".GestionRecambios"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/title_activity_gestion_recambios"
             android:theme="@style/Theme.ProyectoAndroidv2" />
         <activity
