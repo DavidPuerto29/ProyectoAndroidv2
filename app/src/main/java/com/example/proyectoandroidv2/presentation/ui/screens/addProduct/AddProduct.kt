@@ -19,15 +19,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 @Composable
-fun AñadirProducto() {
+fun AñadirProducto(navController: NavController) {
     var nombre by remember { mutableStateOf("") }
     var nReferencia by remember{ mutableStateOf("") }
     var stock by remember { mutableStateOf(0) }
     var fabricante by remember { mutableStateOf("") }
-    var precio by remember { mutableStateOf(0) }
+    var precio by remember { mutableStateOf(0.00) }
     var material by remember { mutableStateOf("") }
     var garantia by remember { mutableStateOf("") }
     Surface(
@@ -104,7 +106,9 @@ fun AñadirProducto() {
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = precio.toString(),
-                    onValueChange = { newText -> precio = newText.toIntOrNull() ?: stock}
+                    onValueChange = { newText -> precio =
+                        (newText.toDoubleOrNull() ?: stock).toDouble()
+                    }
                     , placeholder = { Text("Precio:")} //ARREGLAR
                     ,modifier = Modifier.weight(1f)
                 )
@@ -127,6 +131,6 @@ fun AñadirProducto() {
 @Composable
 fun GreetingPreview() {
     ProyectoAndroidv2Theme {
-        AñadirProducto()
+        AñadirProducto(navController = rememberNavController())
     }
 }

@@ -23,10 +23,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.proyectoandroidv2.presentation.navigation.Screen
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 @Composable
-fun loginScreen(){
+fun LoginScreen(navController: NavController) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var condicion = username.isNotEmpty() && password.length >= 6
@@ -40,11 +43,14 @@ fun loginScreen(){
             TextField(value = password, onValueChange = {password = it}, placeholder = { Text("Contraseña:")}, modifier = Modifier.fillMaxWidth() )
             Spacer(modifier = Modifier.height(16.dp))
             Row{
-                Button(onClick = { } , enabled = condicion, modifier = Modifier.padding(5.dp)) {
+                Button(onClick = {navController.navigate(Screen.Home.route)} , enabled = condicion, modifier = Modifier.padding(5.dp)) {
                     Text("   Login  ")
                 }
 
-                Button(onClick = { }, modifier = Modifier.padding(5.dp)) {
+                Button(onClick = {
+                                    username = ""
+                                    password = ""
+                                 }, modifier = Modifier.padding(5.dp)) {
                     Text("Reiniciar")
                 }
             }
@@ -52,10 +58,11 @@ fun loginScreen(){
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     ProyectoAndroidv2Theme {
-        loginScreen()
+        LoginScreen(navController = rememberNavController())
     }
 }
