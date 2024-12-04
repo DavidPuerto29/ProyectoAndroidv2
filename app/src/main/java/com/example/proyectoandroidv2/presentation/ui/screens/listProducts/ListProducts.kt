@@ -17,8 +17,10 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -48,10 +50,17 @@ fun ListOfProducts(navController: NavController) {
         ,Product("Bloque de motor","8974651U",10,"MotorEngine.SL","MetalForjado","2 Años",1000.00)
         ,Product("Arbol de levas","9874132V",20,"MotorEngine.SL","Aluminio","1 Año",200.00)
     )
-    Surface(modifier = Modifier
+    Scaffold(modifier = Modifier
         .fillMaxSize()
-        .statusBarsPadding()) {
-        LazyColumn {
+        .statusBarsPadding(),
+        floatingActionButton = {
+            Button(onClick ={ navController.navigate(Screen.Home.route)}) {
+                Text("Añadir")
+            }
+        }
+
+    ) { paddingValues ->
+        LazyColumn(Modifier.padding(paddingValues)) {
             items(itemsList) { product ->
                 ProductCard(product = product)
             }

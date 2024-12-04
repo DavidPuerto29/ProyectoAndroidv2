@@ -21,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.proyectoandroidv2.presentation.navigation.Screen
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 @Composable
@@ -119,7 +120,7 @@ fun AñadirProducto(navController: NavController) {
                     Text("Añadir Producto")
                 }
 
-                Button(onClick = { }, modifier = Modifier.padding(5.dp)) {
+                Button(onClick = {navController.navigate(Screen.List.route)}, modifier = Modifier.padding(5.dp)) {
                     Text("Cancelar")
                 }
             }

@@ -28,5 +28,4 @@ class UsernamePasswordViewModel : ViewModel() {
     }
 
     fun isValidLogin(): Boolean = this.username.value == USERNAME && this.password.value == PASSWORD
-    }
 }
