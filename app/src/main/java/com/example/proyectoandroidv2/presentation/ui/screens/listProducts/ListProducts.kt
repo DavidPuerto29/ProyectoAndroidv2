@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.domain.model.Product
+import com.example.proyectoandroidv2.presentation.navigation.Screen
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 

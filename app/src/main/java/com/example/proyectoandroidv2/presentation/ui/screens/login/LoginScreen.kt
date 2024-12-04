@@ -43,7 +43,7 @@ fun LoginScreen(navController: NavController) {
             TextField(value = password, onValueChange = {password = it}, placeholder = { Text("Contraseña:")}, modifier = Modifier.fillMaxWidth() )
             Spacer(modifier = Modifier.height(16.dp))
             Row{
-                Button(onClick = {navController.navigate(Screen.Home.route)} , enabled = condicion, modifier = Modifier.padding(5.dp)) {
+                Button(onClick = {navController.navigate(Screen.List.route)} , enabled = condicion, modifier = Modifier.padding(5.dp)) {
                     Text("   Login  ")
                 }
 
