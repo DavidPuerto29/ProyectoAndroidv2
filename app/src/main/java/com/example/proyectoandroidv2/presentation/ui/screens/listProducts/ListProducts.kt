@@ -54,7 +54,7 @@ fun ListOfProducts(navController: NavController) {
         .fillMaxSize()
         .statusBarsPadding(),
         floatingActionButton = {
-            Button(onClick ={ navController.navigate(Screen.Home.route)}) {
+            Button(onClick ={ navController.navigate(Screen.Add.route)}) {
                 Text("Añadir")
             }
         }
@@ -62,14 +62,14 @@ fun ListOfProducts(navController: NavController) {
     ) { paddingValues ->
         LazyColumn(Modifier.padding(paddingValues)) {
             items(itemsList) { product ->
-                ProductCard(product = product)
+                ProductCard(product = product,navController)
             }
         }
     }
 }
 
 @Composable
-fun ProductCard(product:Product) {
+fun ProductCard(product:Product,navController: NavController) {
     var isSelected by remember { mutableStateOf(false) }
     Card(
         Modifier
@@ -84,7 +84,7 @@ fun ProductCard(product:Product) {
                 Icon(
                     Icons.Default.Edit,
                     contentDescription = "Modificar",
-                    Modifier.clickable { })
+                    Modifier.clickable { navController.navigate(Screen.Modify.route)})
                 Icon(
                     Icons.Default.Delete,
                     contentDescription = "Eliminar",

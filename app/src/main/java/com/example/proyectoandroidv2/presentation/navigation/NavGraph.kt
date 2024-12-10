@@ -7,9 +7,11 @@ import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.presentation.ui.screens.addProduct.AñadirProducto
 import com.example.proyectoandroidv2.presentation.ui.screens.listProducts.ListOfProducts
 import com.example.proyectoandroidv2.presentation.ui.screens.login.LoginScreen
+import com.example.proyectoandroidv2.presentation.ui.screens.modifyProduct.ModificarProducto
 
 sealed class Screen(val route: String) {
-    data object Home : Screen("Home")
+    data object Add : Screen("Add")
+    data object Modify : Screen("Modify")
     data object Login : Screen("Login")
     data object List : Screen("List")
 }
@@ -19,9 +21,14 @@ fun NavGraph(startDestination: String = Screen.Login.route) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = startDestination) {
-        composable(Screen.Home.route) {
+        composable(Screen.Add.route) {
             AñadirProducto(navController)
         }
+
+        composable(Screen.Modify.route) {
+            ModificarProducto(navController)
+        }
+
         composable(Screen.Login.route) {
             LoginScreen(navController)
         }
