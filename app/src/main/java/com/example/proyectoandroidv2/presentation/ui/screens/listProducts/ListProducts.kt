@@ -24,6 +24,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,20 +37,15 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.domain.model.Product
 import com.example.proyectoandroidv2.presentation.navigation.Screen
+import com.example.proyectoandroidv2.presentation.viewmodel.listProducts.ListProductsViewModel
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 
 
 @Composable
 fun ListOfProducts(navController: NavController) {
-    val itemsList = listOf(
-        Product("Tuerca","1544252A",10,"Tuercas.SL","Aluminio","2 Años",10.00)
-        ,Product("Tornillo","564123B",20,"Tornillo.SL","Metal","1 Año",2.00)
-        ,Product("Capo","985141635E",15,"Chapa.SL","Aluminio","5 Años",200.00)
-        ,Product("Llanta","9874651F",100,"Chapa.SL","Aluminio","5 Años",90.00)
-        ,Product("Bloque de motor","8974651U",10,"MotorEngine.SL","MetalForjado","2 Años",1000.00)
-        ,Product("Arbol de levas","9874132V",20,"MotorEngine.SL","Aluminio","1 Año",200.00)
-    )
+    listProductsViewModel: ListProductsViewModel = viewModel()
+    val products = viewModel.products.collectAsState().value
     Scaffold(modifier = Modifier
         .fillMaxSize()
         .statusBarsPadding(),
@@ -61,7 +57,7 @@ fun ListOfProducts(navController: NavController) {
 
     ) { paddingValues ->
         LazyColumn(Modifier.padding(paddingValues)) {
-            items(itemsList) { product ->
+            items(products) { product ->
                 ProductCard(product = product,navController)
             }
         }
