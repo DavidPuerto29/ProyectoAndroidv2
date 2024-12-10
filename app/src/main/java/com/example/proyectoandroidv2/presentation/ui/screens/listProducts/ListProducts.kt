@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.domain.model.Product
@@ -43,9 +44,8 @@ import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 
 @Composable
-fun ListOfProducts(navController: NavController) {
-    listProductsViewModel: ListProductsViewModel = viewModel()
-    val products = viewModel.products.collectAsState().value
+fun ListOfProducts(navController: NavController, viewModel: ListProductsViewModel) {
+    val products =  viewModel.products.collectAsState().value
     Scaffold(modifier = Modifier
         .fillMaxSize()
         .statusBarsPadding(),
@@ -58,14 +58,14 @@ fun ListOfProducts(navController: NavController) {
     ) { paddingValues ->
         LazyColumn(Modifier.padding(paddingValues)) {
             items(products) { product ->
-                ProductCard(product = product,navController)
+                ProductCard(product,navController,viewModel)
             }
         }
     }
 }
 
 @Composable
-fun ProductCard(product:Product,navController: NavController) {
+fun ProductCard(product:Product,navController: NavController, viewModel: ListProductsViewModel) {
     var isSelected by remember { mutableStateOf(false) }
     Card(
         Modifier
@@ -109,6 +109,6 @@ fun ProductCard(product:Product,navController: NavController) {
 @Composable
 fun GreetingPreview() {
     ProyectoAndroidv2Theme {
-        ListOfProducts(navController = rememberNavController())
+        ListOfProducts(navController = rememberNavController(), viewModel())
     }
 }
