@@ -43,7 +43,7 @@ fun ModificarProducto(navController: NavController) {
             .statusBarsPadding() ,
             horizontalAlignment = Alignment.CenterHorizontally) {
 
-            Text(text = "Añadir recambio")
+            Text(text = "Modificar recambio")
 
             Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){

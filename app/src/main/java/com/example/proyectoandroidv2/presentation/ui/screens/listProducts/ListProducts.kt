@@ -44,8 +44,8 @@ import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 
 @Composable
-fun ListOfProducts(navController: NavController, viewModel: ListProductsViewModel) {
-    val products =  viewModel.products.collectAsState().value
+fun ListOfProducts(navController: NavController, listProductsViewModel: ListProductsViewModel) {
+    val products =  listProductsViewModel.products.collectAsState().value
     Scaffold(modifier = Modifier
         .fillMaxSize()
         .statusBarsPadding(),
@@ -58,14 +58,14 @@ fun ListOfProducts(navController: NavController, viewModel: ListProductsViewMode
     ) { paddingValues ->
         LazyColumn(Modifier.padding(paddingValues)) {
             items(products) { product ->
-                ProductCard(product,navController,viewModel)
+                ProductCard(product,navController,listProductsViewModel)
             }
         }
     }
 }
 
 @Composable
-fun ProductCard(product:Product,navController: NavController, viewModel: ListProductsViewModel) {
+fun ProductCard(product:Product,navController: NavController, listProductsViewModel: ListProductsViewModel) {
     var isSelected by remember { mutableStateOf(false) }
     Card(
         Modifier

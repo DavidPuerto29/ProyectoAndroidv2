@@ -19,12 +19,4 @@ class ListProductsViewModel : ViewModel() {
 
     val products: StateFlow<List<Product>> = _products
 
-    fun addProduct(product: Product) {
-        _products.value = _products.value + product
-    }
-
-    fun removeProduct(id: Int) {
-        _products.value = _products.value.filter { it.id != id }
-    }
-
 }
