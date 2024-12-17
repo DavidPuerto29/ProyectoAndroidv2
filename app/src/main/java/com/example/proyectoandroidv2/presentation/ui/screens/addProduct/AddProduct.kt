@@ -23,11 +23,11 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.presentation.navigation.Screen
 import com.example.proyectoandroidv2.presentation.viewmodel.products.ProductViewModel
+import com.example.proyectoandroidv2.presentation.viewmodel.products.ProductsViewModel
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 @Composable
-fun AñadirProducto(navController: NavController, productsViewModel: ProductViewModel = viewModel()) {
-
+fun AñadirProducto(navController: NavController, productsViewModel: ProductViewModel) {
     val product by productsViewModel.product.collectAsState()
 
     Surface(
@@ -42,7 +42,9 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
 
             Text(text = "Añadir recambio")
 
-            Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
+            Row (modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.nombre,
@@ -52,7 +54,9 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                 )
             }
 
-            Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
+            Row (modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.numReferencia,
@@ -61,7 +65,9 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                     ,modifier = Modifier.weight(1f)
                 )
             }
-            Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
+            Row (modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.stock.toString(),
@@ -70,7 +76,9 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                     ,modifier = Modifier.weight(1f)
                 )
             }
-            Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
+            Row (modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.fabricante,
@@ -80,7 +88,9 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                 )
             }
 
-            Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
+            Row (modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.material,
@@ -90,7 +100,9 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                 )
             }
 
-            Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
+            Row (modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.garantia,
@@ -100,7 +112,9 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                 )
             }
 
-            Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
+            Row (modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.precio.toString(),
@@ -128,6 +142,6 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
 @Composable
 fun GreetingPreview() {
     ProyectoAndroidv2Theme {
-        AñadirProducto(navController = rememberNavController())
+        AñadirProducto(navController = rememberNavController(), viewModel())
     }
 }

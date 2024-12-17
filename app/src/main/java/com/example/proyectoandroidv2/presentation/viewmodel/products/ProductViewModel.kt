@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class ProductViewModel: ViewModel(){
+
     private val _product = MutableStateFlow(
         Product(0,"", "",0,"","","",0.00)
     )

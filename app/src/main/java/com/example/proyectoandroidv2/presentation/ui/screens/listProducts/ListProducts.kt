@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -54,7 +55,9 @@ fun ListOfProducts(navController: NavController, productsViewModel: ProductsView
     ) { paddingValues ->
         LazyColumn(Modifier.padding(paddingValues)) {
             items(products) { product ->
-                ProductCard(product,navController,productsViewModel)
+                key(product) {
+                    ProductCard(product, navController, productsViewModel)
+                }
             }
         }
     }
@@ -80,7 +83,7 @@ fun ProductCard(product:Product, navController: NavController, productsViewModel
                 Icon(
                     Icons.Default.Delete,
                     contentDescription = "Eliminar",
-                    Modifier.clickable { })
+                    Modifier.clickable { productsViewModel.removeProduct(product.id) })
                 Column {
                     Text(text = product.nombre, fontWeight = FontWeight.Bold)
                     Text(text = "Numero de referencia: " + product.numReferencia)
