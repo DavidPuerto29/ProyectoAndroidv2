@@ -6,6 +6,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class ListProductsViewModel : ViewModel() {
+    private var idCounter = 7
+
     private val _products = MutableStateFlow<List<Product>>(
         listOf(
             Product(1,"Tuerca","1544252A",10,"Tuercas.SL","Aluminio","2 Años",10.00)
@@ -19,4 +21,13 @@ class ListProductsViewModel : ViewModel() {
 
     val products: StateFlow<List<Product>> = _products
 
+    fun addTask(id : Int, nombre: String, numReferencia: String, stock: Int, fabricante: String, material: String, garantia: String, precio: Double) {
+        val newProduct = Product(id = idCounter, nombre, numReferencia, stock, fabricante, material, garantia, precio)
+        _products.value = _products.value + newProduct
+        idCounter++
+    }
+
+    fun removeTask(id: Int) {
+        _products.value = _products.value.filter { it.id != id }
+    }
 }
