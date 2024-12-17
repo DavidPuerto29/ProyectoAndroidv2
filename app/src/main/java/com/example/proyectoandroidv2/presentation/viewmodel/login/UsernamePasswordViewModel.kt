@@ -14,11 +14,11 @@ class UsernamePasswordViewModel : ViewModel() {
     private val _password = MutableStateFlow<String>("")
     val password : StateFlow<String> = _password
 
-    fun username(username : String){
+    fun setUsername(username : String){
         this._username.value = username
     }
 
-    fun password(password : String){
+    fun setPassword(password : String){
         this._password.value = password
     }
 

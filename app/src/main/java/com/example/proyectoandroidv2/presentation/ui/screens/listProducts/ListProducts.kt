@@ -3,10 +3,8 @@ package com.example.proyectoandroidv2.presentation.ui.screens.listProducts
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,14 +12,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -38,14 +34,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.domain.model.Product
 import com.example.proyectoandroidv2.presentation.navigation.Screen
-import com.example.proyectoandroidv2.presentation.viewmodel.listProducts.ListProductsViewModel
+import com.example.proyectoandroidv2.presentation.viewmodel.products.ProductsViewModel
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 
 
 @Composable
-fun ListOfProducts(navController: NavController, listProductsViewModel: ListProductsViewModel) {
-    val products =  listProductsViewModel.products.collectAsState().value
+fun ListOfProducts(navController: NavController, productsViewModel: ProductsViewModel) {
+    val products =  productsViewModel.products.collectAsState().value
     Scaffold(modifier = Modifier
         .fillMaxSize()
         .statusBarsPadding(),
@@ -58,14 +54,14 @@ fun ListOfProducts(navController: NavController, listProductsViewModel: ListProd
     ) { paddingValues ->
         LazyColumn(Modifier.padding(paddingValues)) {
             items(products) { product ->
-                ProductCard(product,navController,listProductsViewModel)
+                ProductCard(product,navController,productsViewModel)
             }
         }
     }
 }
 
 @Composable
-fun ProductCard(product:Product,navController: NavController, listProductsViewModel: ListProductsViewModel) {
+fun ProductCard(product:Product, navController: NavController, productsViewModel: ProductsViewModel) {
     var isSelected by remember { mutableStateOf(false) }
     Card(
         Modifier

@@ -11,28 +11,25 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.presentation.navigation.Screen
+import com.example.proyectoandroidv2.presentation.viewmodel.products.ProductViewModel
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 @Composable
-fun AñadirProducto(navController: NavController) {
-    var nombre by remember { mutableStateOf("") }
-    var nReferencia by remember{ mutableStateOf("") }
-    var stock by remember { mutableStateOf(0) }
-    var fabricante by remember { mutableStateOf("") }
-    var precio by remember { mutableStateOf(0.00) }
-    var material by remember { mutableStateOf("") }
-    var garantia by remember { mutableStateOf("") }
+fun AñadirProducto(navController: NavController, productsViewModel: ProductViewModel = viewModel()) {
+
+    val product by productsViewModel.product.collectAsState()
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -48,8 +45,8 @@ fun AñadirProducto(navController: NavController) {
             Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
-                    value = nombre,
-                    onValueChange = { newText -> nombre = newText }
+                    value = product.nombre,
+                    onValueChange = { productsViewModel.setNombre(it) }
                     , placeholder = { Text("Nombre:")}
                     ,modifier = Modifier.weight(1f)
                 )
@@ -58,8 +55,8 @@ fun AñadirProducto(navController: NavController) {
             Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
-                    value = nReferencia,
-                    onValueChange = { newText -> nReferencia = newText }
+                    value = product.numReferencia,
+                    onValueChange = { productsViewModel.setNumReferencia(it) }
                     , placeholder = { Text("Numero de referencia:")}
                     ,modifier = Modifier.weight(1f)
                 )
@@ -67,8 +64,8 @@ fun AñadirProducto(navController: NavController) {
             Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
-                    value = stock.toString(),
-                    onValueChange = { newText -> stock = newText.toIntOrNull() ?: stock}
+                    value = product.stock.toString(),
+                    onValueChange = { newStock -> newStock.toIntOrNull()?.let { productsViewModel.setStock(it)}}
                     , placeholder = { Text("Stock:")} //ARREGLAR
                     ,modifier = Modifier.weight(1f)
                 )
@@ -76,8 +73,8 @@ fun AñadirProducto(navController: NavController) {
             Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
-                    value = fabricante,
-                    onValueChange = { newText -> fabricante = newText }
+                    value = product.fabricante,
+                    onValueChange = { productsViewModel.setFabricante(it)}
                     , placeholder = { Text("Fabricante:")}
                     ,modifier = Modifier.weight(1f)
                 )
@@ -86,8 +83,8 @@ fun AñadirProducto(navController: NavController) {
             Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
-                    value = material,
-                    onValueChange = { newText -> material = newText}
+                    value = product.material,
+                    onValueChange = { productsViewModel.setMaterial(it) }
                     , placeholder = { Text("Material:")}
                     ,modifier = Modifier.weight(1f)
                 )
@@ -96,8 +93,8 @@ fun AñadirProducto(navController: NavController) {
             Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
-                    value = garantia,
-                    onValueChange = { newText -> garantia = newText}
+                    value = product.garantia,
+                    onValueChange = { productsViewModel.setGarantia(it) }
                     , placeholder = { Text("Garantía:")}
                     ,modifier = Modifier.weight(1f)
                 )
@@ -106,9 +103,8 @@ fun AñadirProducto(navController: NavController) {
             Row (modifier = Modifier.fillMaxWidth().padding(10.dp),
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
-                    value = precio.toString(),
-                    onValueChange = { newText -> precio =
-                        (newText.toDoubleOrNull() ?: stock).toDouble()
+                    value = product.precio.toString(),
+                    onValueChange = { newPrecio -> newPrecio.toDoubleOrNull()?.let { productsViewModel.setPrecio(it)}
                     }
                     , placeholder = { Text("Precio:")} //ARREGLAR
                     ,modifier = Modifier.weight(1f)

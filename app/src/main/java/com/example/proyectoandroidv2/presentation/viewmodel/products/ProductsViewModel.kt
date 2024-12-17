@@ -1,11 +1,11 @@
-package com.example.proyectoandroidv2.presentation.viewmodel.listProducts
+package com.example.proyectoandroidv2.presentation.viewmodel.products
 
 import androidx.lifecycle.ViewModel
 import com.example.proyectoandroidv2.domain.model.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class ListProductsViewModel : ViewModel() {
+class ProductsViewModel : ViewModel() {
     private var idCounter = 7
 
     private val _products = MutableStateFlow<List<Product>>(
