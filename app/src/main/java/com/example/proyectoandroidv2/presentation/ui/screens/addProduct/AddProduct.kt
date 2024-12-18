@@ -27,8 +27,8 @@ import com.example.proyectoandroidv2.presentation.viewmodel.products.ProductsVie
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 @Composable
-fun AñadirProducto(navController: NavController, productsViewModel: ProductViewModel) {
-    val product by productsViewModel.product.collectAsState()
+fun AñadirProducto(navController: NavController, productViewModel: ProductViewModel) {
+    val product by productViewModel.product.collectAsState()
 
     Surface(
         modifier = Modifier
@@ -48,7 +48,7 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.nombre,
-                    onValueChange = { productsViewModel.setNombre(it) }
+                    onValueChange = { productViewModel.setNombre(it) }
                     , placeholder = { Text("Nombre:")}
                     ,modifier = Modifier.weight(1f)
                 )
@@ -60,7 +60,7 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.numReferencia,
-                    onValueChange = { productsViewModel.setNumReferencia(it) }
+                    onValueChange = { productViewModel.setNumReferencia(it) }
                     , placeholder = { Text("Numero de referencia:")}
                     ,modifier = Modifier.weight(1f)
                 )
@@ -71,7 +71,7 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.stock.toString(),
-                    onValueChange = { newStock -> newStock.toIntOrNull()?.let { productsViewModel.setStock(it)}}
+                    onValueChange = { newStock -> newStock.toIntOrNull()?.let { productViewModel.setStock(it)}}
                     , placeholder = { Text("Stock:")} //ARREGLAR
                     ,modifier = Modifier.weight(1f)
                 )
@@ -82,7 +82,7 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.fabricante,
-                    onValueChange = { productsViewModel.setFabricante(it)}
+                    onValueChange = { productViewModel.setFabricante(it)}
                     , placeholder = { Text("Fabricante:")}
                     ,modifier = Modifier.weight(1f)
                 )
@@ -94,7 +94,7 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.material,
-                    onValueChange = { productsViewModel.setMaterial(it) }
+                    onValueChange = { productViewModel.setMaterial(it) }
                     , placeholder = { Text("Material:")}
                     ,modifier = Modifier.weight(1f)
                 )
@@ -106,7 +106,7 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.garantia,
-                    onValueChange = { productsViewModel.setGarantia(it) }
+                    onValueChange = { productViewModel.setGarantia(it) }
                     , placeholder = { Text("Garantía:")}
                     ,modifier = Modifier.weight(1f)
                 )
@@ -118,7 +118,7 @@ fun AñadirProducto(navController: NavController, productsViewModel: ProductView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.precio.toString(),
-                    onValueChange = { newPrecio -> newPrecio.toDoubleOrNull()?.let { productsViewModel.setPrecio(it)}
+                    onValueChange = { newPrecio -> newPrecio.toDoubleOrNull()?.let { productViewModel.setPrecio(it)}
                     }
                     , placeholder = { Text("Precio:")} //ARREGLAR
                     ,modifier = Modifier.weight(1f)

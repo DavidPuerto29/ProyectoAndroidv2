@@ -9,6 +9,7 @@ import com.example.proyectoandroidv2.presentation.ui.screens.addProduct.AñadirP
 import com.example.proyectoandroidv2.presentation.ui.screens.listProducts.ListOfProducts
 import com.example.proyectoandroidv2.presentation.ui.screens.login.LoginScreen
 import com.example.proyectoandroidv2.presentation.ui.screens.modifyProduct.ModificarProducto
+import com.example.proyectoandroidv2.presentation.viewmodel.modificar.ModifyViewModel
 import com.example.proyectoandroidv2.presentation.viewmodel.products.ProductViewModel
 import com.example.proyectoandroidv2.presentation.viewmodel.products.ProductsViewModel
 
@@ -25,6 +26,7 @@ fun NavGraph(startDestination: String = Screen.Login.route) {
 
     val productsViewModel: ProductsViewModel = viewModel()
     val productViewModel: ProductViewModel = viewModel()
+    val modifyViewModel: ModifyViewModel = viewModel()
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Screen.Add.route) {
@@ -32,7 +34,7 @@ fun NavGraph(startDestination: String = Screen.Login.route) {
         }
 
         composable(Screen.Modify.route) {
-            ModificarProducto(navController)
+            ModificarProducto(navController, modifyViewModel)
         }
 
         composable(Screen.Login.route) {
