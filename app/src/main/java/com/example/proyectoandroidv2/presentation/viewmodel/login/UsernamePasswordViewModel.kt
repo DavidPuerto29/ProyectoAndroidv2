@@ -27,11 +27,7 @@ class UsernamePasswordViewModel : ViewModel() {
         this._password.value = ""
     }
 
-<<<<<<< HEAD
     fun isValidLogin(): Boolean {
         return this.username.value == USERNAME && this.password.value == PASSWORD
     }
-=======
-    fun isValidLogin(): Boolean = this.username.value == USERNAME && this.password.value == PASSWORD
->>>>>>> 00a5ea5a78c6f30321f6c698a7c7c25df2848d8d
 }
