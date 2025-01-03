@@ -46,11 +46,8 @@ fun LoginScreen(
     val username by usernamePasswordViewModel.username.collectAsState()
     val password by usernamePasswordViewModel.password.collectAsState()
     var passwordVisible by remember { mutableStateOf(false) }
-<<<<<<< HEAD
+
     var condicion = username.isNotEmpty() && password.length >= 4
-=======
-    var condicion = username.isNotEmpty() && password.length >= 6
->>>>>>> 00a5ea5a78c6f30321f6c698a7c7c25df2848d8d
 
     Surface(modifier = Modifier
         .fillMaxSize()
@@ -69,11 +66,7 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
             Row{
-<<<<<<< HEAD
                 Button(onClick = { if(usernamePasswordViewModel.isValidLogin()) navController.navigate(Screen.List.route)} , enabled = condicion, modifier = Modifier.padding(5.dp)) {
-=======
-                Button(onClick = {navController.navigate(Screen.List.route)} , enabled = condicion, modifier = Modifier.padding(5.dp)) {
->>>>>>> 00a5ea5a78c6f30321f6c698a7c7c25df2848d8d
                     Text("   Login  ")
                 }
 
