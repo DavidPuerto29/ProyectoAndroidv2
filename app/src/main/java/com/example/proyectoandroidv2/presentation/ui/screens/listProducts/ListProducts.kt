@@ -16,9 +16,15 @@ import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -35,14 +41,17 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.domain.model.Product
 import com.example.proyectoandroidv2.presentation.navigation.Screen
+import com.example.proyectoandroidv2.presentation.ui.components.MenuDeAcciones
 import com.example.proyectoandroidv2.presentation.viewmodel.products.ProductsViewModel
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ListOfProducts(navController: NavController, productsViewModel: ProductsViewModel) {
     val products =  productsViewModel.products.collectAsState().value
+
     Scaffold(modifier = Modifier
         .fillMaxSize()
         .statusBarsPadding(),
@@ -50,9 +59,10 @@ fun ListOfProducts(navController: NavController, productsViewModel: ProductsView
             Button(onClick ={ navController.navigate(Screen.Add.route)}) {
                 Text("Añadir")
             }
-        }
-
-    ) { paddingValues ->
+        },
+        topBar = {MenuDeAcciones(navController = navController)}
+    )
+    { paddingValues ->
         LazyColumn(Modifier.padding(paddingValues)) {
             items(products) { product ->
                 key(product) {
