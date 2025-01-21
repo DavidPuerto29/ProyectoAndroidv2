@@ -1,3 +1,5 @@
+package com.example.proyectoandroidv2.data.repository.source
+
 import com.example.proyectoandroidv2.domain.model.Product
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -11,9 +13,9 @@ class ProductRepository(val firestore: FirebaseFirestore) {
     private val productsCollection = firestore.collection("products")
 
     // Obtener un usuario por ID
-    suspend fun getProductById(id: String): Product? {
+    suspend fun getProductById(idSql: String): Product? {
         return try {
-            val documentSnapshot = productsCollection.document(id).get().await()
+            val documentSnapshot = productsCollection.document(idSql).get().await()
             documentSnapshot.toObject(Product::class.java)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -29,7 +31,7 @@ class ProductRepository(val firestore: FirebaseFirestore) {
             val listener = productsCollection
                 // Aquí viene la query,
                 // Se ordena por nombre de manera desceniente
-                .orderBy("name", Query.Direction.DESCENDING)
+                .orderBy("nombre", Query.Direction.DESCENDING)
                 // Creamos un listener a la query para que se actualice siempre que haya cambios
                 .addSnapshotListener { snapshots, error ->
                     if (error != null) {
@@ -48,11 +50,9 @@ class ProductRepository(val firestore: FirebaseFirestore) {
         }
     }
 
-    /*
-    // Agregar un nuevo usuario
-    suspend fun addUser(user: User): Boolean {
+    suspend fun addProduct(product: Product): Boolean {
         return try {
-            usersCollection.add(user).await()
+            productsCollection.add(product).await()
             true
         } catch (e: Exception) {
             e.printStackTrace()
@@ -60,10 +60,9 @@ class ProductRepository(val firestore: FirebaseFirestore) {
         }
     }
 
-    // Actualizar un usuario existente
-    suspend fun updateUser(id: String, user: Map<String, Any>): Boolean {
+    suspend fun updateProduct(idSql: String, product: Map<String, Any>): Boolean {
         return try {
-            usersCollection.document(id).update(user).await()
+            productsCollection.document(idSql).update(product).await()
             true
         } catch (e: Exception) {
             e.printStackTrace()
@@ -71,15 +70,14 @@ class ProductRepository(val firestore: FirebaseFirestore) {
         }
     }
 
-    // Eliminar un usuario por ID
-    suspend fun deleteUser(id: String): Boolean {
+    suspend fun deleteProduct(idSql: String): Boolean {
         return try {
-            usersCollection.document(id).delete().await()
+            productsCollection.document(idSql).delete().await()
             true
         } catch (e: Exception) {
             e.printStackTrace()
             false
         }
     }
-     */
+
 }

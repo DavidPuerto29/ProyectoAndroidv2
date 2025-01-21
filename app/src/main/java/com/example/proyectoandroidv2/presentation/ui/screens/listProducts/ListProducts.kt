@@ -65,7 +65,7 @@ fun ListOfProducts(navController: NavController, productsViewModel: ProductsView
     { paddingValues ->
         LazyColumn(Modifier.padding(paddingValues)) {
             items(products) { product ->
-                key(product) {
+                key(product.idSql) {
                     ProductCard(product, navController, productsViewModel)
                 }
             }
@@ -93,7 +93,7 @@ fun ProductCard(product:Product, navController: NavController, productsViewModel
                 Icon(
                     Icons.Default.Delete,
                     contentDescription = "Eliminar",
-                    Modifier.clickable { productsViewModel.removeProduct(product.id) })
+                    Modifier.clickable { productsViewModel.removeProduct(product.idSql) })
                 Column {
                     Text(text = product.nombre, fontWeight = FontWeight.Bold)
                     Text(text = "Numero de referencia: " + product.numReferencia)

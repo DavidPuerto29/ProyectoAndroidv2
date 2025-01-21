@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "753057584674",
+    "project_id": "gestionderecambios",
+    "storage_bucket": "gestionderecambios.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:753057584674:android:9a0569a4352a046fc01c7b",
+        "android_client_info": {
+          "package_name": "com.example.proyectoandroidv2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPrQgSs0Mo1WWfpk7DpLXcHPOOEoVKv7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -21,16 +21,16 @@ class ProductsViewModel : ViewModel() {
 
     val products: StateFlow<List<Product>> = _products
 
-    fun addProducto(id : Int, nombre: String, numReferencia: String, stock: Int, fabricante: String, material: String, garantia: String, precio: Double) {
-        val newProduct = Product(id = idCounter, nombre, numReferencia, stock, fabricante, material, garantia, precio)
+    fun addProducto(idSql : Int, nombre: String, numReferencia: String, stock: Int, fabricante: String, material: String, garantia: String, precio: Double) {
+        val newProduct = Product(idSql = idCounter, nombre, numReferencia, stock, fabricante, material, garantia, precio)
         _products.value = _products.value + newProduct
         idCounter++
     }
 
-    fun removeProduct(id: Int) {
+    fun removeProduct(idSql: Int) {
         // TODO elminar en la base de datos
         _products.value = _products
             .value
-            .filter { it.id != id }
+            .filter { it.idSql != idSql }
     }
 }

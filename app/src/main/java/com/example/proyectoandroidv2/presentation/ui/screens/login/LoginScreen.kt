@@ -55,7 +55,10 @@ fun LoginScreen(
         Column(verticalArrangement = Arrangement.Center,horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize()) {
             TextField(value = username, onValueChange = { usernamePasswordViewModel.setUsername(it) }, placeholder = { Text("Usuario:")}, modifier = Modifier.fillMaxWidth())
             Spacer(modifier = Modifier.height(16.dp))
-            TextField(value = password, onValueChange = { usernamePasswordViewModel.setPassword(it) }, placeholder = { Text("Contraseña:")}, visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(), modifier = Modifier.fillMaxWidth(),
+            TextField(value = password, onValueChange = { usernamePasswordViewModel.setPassword(it) },
+                placeholder = { Text("Contraseña:")}, visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                modifier = Modifier.fillMaxWidth(),
+
                 trailingIcon = {
                     val image = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {

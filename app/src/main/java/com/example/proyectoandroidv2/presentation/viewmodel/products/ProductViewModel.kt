@@ -12,9 +12,9 @@ class ProductViewModel: ViewModel(){
     )
     val product: StateFlow<Product> = _product
 
-    fun setId(id: Int) {
+    fun setIdSql(idSql: Int) {
         _product.value = _product.value.copy(
-            id = id
+            idSql = idSql
         )
     }
 
