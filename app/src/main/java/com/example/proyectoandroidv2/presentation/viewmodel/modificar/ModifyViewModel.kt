@@ -7,11 +7,11 @@ import kotlinx.coroutines.flow.StateFlow
 
 class ModifyViewModel : ViewModel() {
     private val _product = MutableStateFlow(
-        Product(0,"", "",0,"","","",0.00)
+        Product("0","", "",0,"","","",0.00)
     )
     val product: StateFlow<Product> = _product
 
-    fun setIdSql(idSql: Int) {
+    fun setIdSql(idSql: String) {
         _product.value = _product.value.copy(
             idSql = idSql
         )

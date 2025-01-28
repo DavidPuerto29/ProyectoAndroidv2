@@ -1,18 +1,21 @@
 package com.example.proyectoandroidv2.presentation.viewmodel.products
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.proyectoandroidv2.domain.model.Product
+import com.example.proyectoandroidv2.domain.usecase.AddProductsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
-class ProductViewModel: ViewModel(){
+class AddProductViewModel(val addProductUseCase: AddProductsUseCase): ViewModel(){
 
     private val _product = MutableStateFlow(
-        Product(0,"", "",0,"","","",0.00)
+        Product("0","", "",0,"","","",0.00)
     )
     val product: StateFlow<Product> = _product
 
-    fun setIdSql(idSql: Int) {
+    fun setIdSql(idSql: String) {
         _product.value = _product.value.copy(
             idSql = idSql
         )
@@ -61,8 +64,8 @@ class ProductViewModel: ViewModel(){
     }
 
     fun save() {
-        // TODO guardar en la base de datos
-        // productoDao.save(_product.value)
+        viewModelScope.launch {
+            addProductUseCase(product.value)
+        }
     }
-
 }

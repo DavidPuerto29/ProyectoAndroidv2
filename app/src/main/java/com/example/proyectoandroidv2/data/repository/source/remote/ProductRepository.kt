@@ -1,4 +1,4 @@
-package com.example.proyectoandroidv2.data.repository.source
+package com.example.proyectoandroidv2.data.repository.source.remote
 
 import com.example.proyectoandroidv2.domain.model.Product
 import com.google.firebase.firestore.FirebaseFirestore

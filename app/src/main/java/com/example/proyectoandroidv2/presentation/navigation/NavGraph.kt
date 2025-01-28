@@ -10,7 +10,7 @@ import com.example.proyectoandroidv2.presentation.ui.screens.listProducts.ListOf
 import com.example.proyectoandroidv2.presentation.ui.screens.login.LoginScreen
 import com.example.proyectoandroidv2.presentation.ui.screens.modifyProduct.ModificarProducto
 import com.example.proyectoandroidv2.presentation.viewmodel.modificar.ModifyViewModel
-import com.example.proyectoandroidv2.presentation.viewmodel.products.ProductViewModel
+import com.example.proyectoandroidv2.presentation.viewmodel.products.AddProductViewModel
 import com.example.proyectoandroidv2.presentation.viewmodel.products.ProductsViewModel
 
 sealed class Screen(val route: String) {
@@ -25,12 +25,12 @@ fun NavGraph(startDestination: String = Screen.Login.route) {
     val navController = rememberNavController()
 
     val productsViewModel: ProductsViewModel = viewModel()
-    val productViewModel: ProductViewModel = viewModel()
+    val addProductViewModel: AddProductViewModel = viewModel()
     val modifyViewModel: ModifyViewModel = viewModel()
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Screen.Add.route) {
-            AñadirProducto(navController, productViewModel)
+            AñadirProducto(navController, addProductViewModel)
         }
 
         composable(Screen.Modify.route) {
