@@ -12,6 +12,7 @@ import com.example.proyectoandroidv2.presentation.ui.screens.modifyProduct.Modif
 import com.example.proyectoandroidv2.presentation.viewmodel.modificar.ModifyViewModel
 import com.example.proyectoandroidv2.presentation.viewmodel.products.AddProductViewModel
 import com.example.proyectoandroidv2.presentation.viewmodel.products.ProductsViewModel
+import org.koin.androidx.compose.koinViewModel
 
 sealed class Screen(val route: String) {
     data object Add : Screen("Add")
@@ -24,9 +25,9 @@ sealed class Screen(val route: String) {
 fun NavGraph(startDestination: String = Screen.Login.route) {
     val navController = rememberNavController()
 
-    val productsViewModel: ProductsViewModel = viewModel()
-    val addProductViewModel: AddProductViewModel = viewModel()
-    val modifyViewModel: ModifyViewModel = viewModel()
+    val productsViewModel: ProductsViewModel = koinViewModel()
+    val addProductViewModel: AddProductViewModel = koinViewModel()
+    val modifyViewModel: ModifyViewModel = koinViewModel()
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable(Screen.Add.route) {

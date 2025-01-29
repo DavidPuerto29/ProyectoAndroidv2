@@ -44,12 +44,12 @@ import com.example.proyectoandroidv2.presentation.navigation.Screen
 import com.example.proyectoandroidv2.presentation.ui.components.MenuDeAcciones
 import com.example.proyectoandroidv2.presentation.viewmodel.products.ProductsViewModel
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
-
+import org.koin.androidx.compose.koinViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListOfProducts(navController: NavController, productsViewModel: ProductsViewModel) {
+fun ListOfProducts(navController: NavController, productsViewModel: ProductsViewModel = koinViewModel()) {
     val products =  productsViewModel.products.collectAsState().value
 
     Scaffold(modifier = Modifier

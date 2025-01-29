@@ -1,4 +1,4 @@
-package com.example.di
+package com.example.proyectoandroidv2.di
 
 import com.example.proyectoandroidv2.data.repository.source.remote.ProductRepository
 import com.example.proyectoandroidv2.domain.usecase.AddProductsUseCase
@@ -23,7 +23,7 @@ val appModule = module {
 
     factory { DeleteProductsUseCase(get()) }
 
-    //viewModel { ModifyViewModel(get(), get()) }
-    //viewModel { ProductsViewModel(get(), get()) }
+    viewModel { ModifyViewModel() }
+    viewModel { ProductsViewModel(get(), get()) }
     viewModel { AddProductViewModel(get()) }
 }

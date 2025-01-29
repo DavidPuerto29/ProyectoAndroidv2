@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.di.appModule
+import com.example.proyectoandroidv2.di.appModule
 import com.example.proyectoandroidv2.presentation.navigation.NavGraph
 import com.example.proyectoandroidv2.presentation.ui.screens.addProduct.AñadirProducto
 import com.example.proyectoandroidv2.presentation.ui.screens.login.LoginScreen
@@ -17,9 +17,11 @@ import org.koin.core.context.GlobalContext.startKoin
 class GestionRecambios : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startKoin {
-            androidContext(this@GestionRecambios)
-            modules(appModule)
+        enableEdgeToEdge()
+        setContent {
+            ProyectoAndroidv2Theme {
+                NavGraph()
+            }
         }
     }
 }

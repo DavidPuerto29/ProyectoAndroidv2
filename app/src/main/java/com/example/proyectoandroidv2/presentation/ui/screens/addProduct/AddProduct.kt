@@ -27,7 +27,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AñadirProducto(navController: NavController,
-                   addProductViewModel: AddProductViewModel = koinViewModel()) {
+                   addProductViewModel: AddProductViewModel) {
     val product by addProductViewModel.product.collectAsState()
     Surface(
         modifier = Modifier

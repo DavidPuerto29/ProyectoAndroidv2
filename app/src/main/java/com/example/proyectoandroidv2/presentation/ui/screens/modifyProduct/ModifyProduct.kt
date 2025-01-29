@@ -23,9 +23,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.presentation.navigation.Screen
 import com.example.proyectoandroidv2.presentation.viewmodel.modificar.ModifyViewModel
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ModificarProducto(navController: NavController,  modifyViewModel: ModifyViewModel) {
+fun ModificarProducto(navController: NavController,  modifyViewModel: ModifyViewModel = koinViewModel()) {
     val product by modifyViewModel.product.collectAsState()
 
     Surface(
