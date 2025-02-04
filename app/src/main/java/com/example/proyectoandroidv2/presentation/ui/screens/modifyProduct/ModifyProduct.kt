@@ -111,7 +111,7 @@ fun ModificarProducto(navController: NavController,  modifyViewModel: ModifyView
             }
 
             Row{
-                Button(onClick = { }, modifier = Modifier.padding(5.dp)) {
+                Button(onClick = {  }, modifier = Modifier.padding(5.dp)) {
                     Text("Modificar Producto")
                 }
 

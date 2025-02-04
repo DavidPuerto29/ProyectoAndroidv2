@@ -125,7 +125,10 @@ fun AñadirProducto(navController: NavController,
             }
 
             Row{
-                Button(onClick = { }, modifier = Modifier.padding(5.dp)) {
+                Button(onClick = {
+                    addProductViewModel.save()
+                    navController.popBackStack()
+                }, modifier = Modifier.padding(5.dp)) {
                     Text("Añadir Producto")
                 }
 

@@ -26,15 +26,3 @@ class GestionRecambios : ComponentActivity() {
     }
 }
 
-@Composable
-fun Vista() {
-
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview2() {
-    ProyectoAndroidv2Theme {
-
-    }
-}
