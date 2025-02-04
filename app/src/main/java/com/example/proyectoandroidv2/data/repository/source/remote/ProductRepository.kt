@@ -12,7 +12,6 @@ class ProductRepository(val firestore: FirebaseFirestore) {
 
     private val productsCollection = firestore.collection("products")
 
-    // Obtener un usuario por ID
     suspend fun getProductById(idSql: String): Product? {
         return try {
             val documentSnapshot = productsCollection.document(idSql).get().await()
