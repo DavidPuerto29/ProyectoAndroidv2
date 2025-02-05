@@ -15,14 +15,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.presentation.navigation.Screen
 import com.example.proyectoandroidv2.presentation.viewmodel.modificar.UpdateViewModel
-import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -125,10 +121,3 @@ fun ModificarProducto(navController: NavController,productId: String?, updateVie
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ProyectoAndroidv2Theme {
-        ModificarProducto(navController = rememberNavController(), viewModel())
-    }
-}

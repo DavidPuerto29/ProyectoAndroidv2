@@ -1,6 +1,5 @@
 package com.example.proyectoandroidv2.presentation.ui.screens.login
 
-import android.widget.Space
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,14 +28,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.presentation.navigation.Screen
 import com.example.proyectoandroidv2.presentation.viewmodel.login.UsernamePasswordViewModel
-import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 
 @Composable
 fun LoginScreen(
@@ -47,7 +43,7 @@ fun LoginScreen(
     val password by usernamePasswordViewModel.password.collectAsState()
     var passwordVisible by remember { mutableStateOf(false) }
 
-    var condicion = username.isNotEmpty() && password.length >= 4
+    val condicion = username.isNotEmpty() && password.length >= 4
 
     Surface(modifier = Modifier
         .fillMaxSize()
@@ -81,11 +77,3 @@ fun LoginScreen(
     }
 }
 
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ProyectoAndroidv2Theme {
-        LoginScreen(navController = rememberNavController())
-    }
-}
