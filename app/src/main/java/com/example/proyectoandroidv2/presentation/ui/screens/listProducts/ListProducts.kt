@@ -89,7 +89,7 @@ fun ProductCard(product:Product, navController: NavController, productsViewModel
                 Icon(
                     Icons.Default.Edit,
                     contentDescription = "Modificar",
-                    Modifier.clickable { navController.navigate(Screen.Modify.route)})
+                    Modifier.clickable { navController.navigate(Screen.Update.createRoute(product.idSql))})
                 Icon(
                     Icons.Default.Delete,
                     contentDescription = "Eliminar",

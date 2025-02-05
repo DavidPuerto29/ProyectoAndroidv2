@@ -1,20 +1,29 @@
 package com.example.proyectoandroidv2.presentation.viewmodel.modificar
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.proyectoandroidv2.domain.model.Product
+import com.example.proyectoandroidv2.domain.usecase.GetProductUseCase
+import com.example.proyectoandroidv2.domain.usecase.UpdateProductsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
-class ModifyViewModel : ViewModel() {
+class UpdateViewModel(
+    val updateProductUseCase: UpdateProductsUseCase,
+    val getProductUseCase: GetProductUseCase
+) : ViewModel() {
+
+
     private val _product = MutableStateFlow(
         Product("0","", "",0,"","","",0.00)
     )
     val product: StateFlow<Product> = _product
 
-    fun setIdSql(idSql: String) {
-        _product.value = _product.value.copy(
-            idSql = idSql
-        )
+    fun setId(id: String?) {
+        viewModelScope.launch {
+            _product.value = getProductUseCase(id) ?:  Product("0","", "",0,"","","",0.00)
+        }
     }
 
     fun setNombre(nombre: String) {
@@ -60,7 +69,8 @@ class ModifyViewModel : ViewModel() {
     }
 
     fun save() {
-        // TODO guardar en la base de datos
-        // productoDao.save(_product.value)
+        viewModelScope.launch {
+            updateProductUseCase(product.value)
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.proyectoandroidv2.presentation.ui.screens.modifyProduct
+package com.example.proyectoandroidv2.presentation.ui.screens.updateProduct
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,13 +21,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectoandroidv2.presentation.navigation.Screen
-import com.example.proyectoandroidv2.presentation.viewmodel.modificar.ModifyViewModel
+import com.example.proyectoandroidv2.presentation.viewmodel.modificar.UpdateViewModel
 import com.example.proyectoandroidv2.ui.theme.ProyectoAndroidv2Theme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ModificarProducto(navController: NavController,  modifyViewModel: ModifyViewModel = koinViewModel()) {
-    val product by modifyViewModel.product.collectAsState()
+fun ModificarProducto(navController: NavController,productId: String?, updateViewModel: UpdateViewModel = koinViewModel()) {
+    val product by updateViewModel.product.collectAsState()
+    updateViewModel.setId(productId)
 
     Surface(
         modifier = Modifier
@@ -45,7 +46,7 @@ fun ModificarProducto(navController: NavController,  modifyViewModel: ModifyView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.nombre,
-                    onValueChange = { modifyViewModel.setNombre(it) }
+                    onValueChange = { updateViewModel.setNombre(it) }
                     , placeholder = { Text("Nombre:") }
                     ,modifier = Modifier.weight(1f)
                 )
@@ -55,7 +56,7 @@ fun ModificarProducto(navController: NavController,  modifyViewModel: ModifyView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.numReferencia,
-                    onValueChange = { modifyViewModel.setNumReferencia(it) }
+                    onValueChange = { updateViewModel.setNumReferencia(it) }
                     , placeholder = { Text("Numero de referencia:") }
                     ,modifier = Modifier.weight(1f)
                 )
@@ -64,7 +65,7 @@ fun ModificarProducto(navController: NavController,  modifyViewModel: ModifyView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.stock.toString(),
-                    onValueChange = { newStock -> newStock.toIntOrNull()?.let { modifyViewModel.setStock(it)}}
+                    onValueChange = { newStock -> newStock.toIntOrNull()?.let { updateViewModel.setStock(it)}}
                     , placeholder = { Text("Stock:") } //ARREGLAR
                     ,modifier = Modifier.weight(1f)
                 )
@@ -73,7 +74,7 @@ fun ModificarProducto(navController: NavController,  modifyViewModel: ModifyView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.fabricante,
-                    onValueChange = { modifyViewModel.setFabricante(it) }
+                    onValueChange = { updateViewModel.setFabricante(it) }
                     , placeholder = { Text("Fabricante:") }
                     ,modifier = Modifier.weight(1f)
                 )
@@ -83,7 +84,7 @@ fun ModificarProducto(navController: NavController,  modifyViewModel: ModifyView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.material,
-                    onValueChange = { modifyViewModel.setMaterial(it) }
+                    onValueChange = { updateViewModel.setMaterial(it) }
                     , placeholder = { Text("Material:") }
                     ,modifier = Modifier.weight(1f)
                 )
@@ -93,7 +94,7 @@ fun ModificarProducto(navController: NavController,  modifyViewModel: ModifyView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.garantia,
-                    onValueChange = { modifyViewModel.setGarantia(it) }
+                    onValueChange = { updateViewModel.setGarantia(it) }
                     , placeholder = { Text("Garantía:") }
                     ,modifier = Modifier.weight(1f)
                 )
@@ -103,7 +104,7 @@ fun ModificarProducto(navController: NavController,  modifyViewModel: ModifyView
                 verticalAlignment = Alignment.CenterVertically){
                 TextField(
                     value = product.precio.toString(),
-                    onValueChange = { newPrecio -> newPrecio.toDoubleOrNull()?.let { modifyViewModel.setPrecio(it)}
+                    onValueChange = { newPrecio -> newPrecio.toDoubleOrNull()?.let { updateViewModel.setPrecio(it)}
                     }
                     , placeholder = { Text("Precio:") } //ARREGLAR
                     ,modifier = Modifier.weight(1f)
@@ -111,7 +112,8 @@ fun ModificarProducto(navController: NavController,  modifyViewModel: ModifyView
             }
 
             Row{
-                Button(onClick = {  }, modifier = Modifier.padding(5.dp)) {
+                Button(onClick = { updateViewModel.save()
+                                    navController.popBackStack()}, modifier = Modifier.padding(5.dp)) {
                     Text("Modificar Producto")
                 }
 

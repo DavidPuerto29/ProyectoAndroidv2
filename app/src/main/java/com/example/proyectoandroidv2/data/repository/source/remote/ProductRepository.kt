@@ -12,26 +12,24 @@ class ProductRepository(val firestore: FirebaseFirestore) {
 
     private val productsCollection = firestore.collection("products")
 
-    suspend fun getProductById(idSql: String): Product? {
-        return try {
-            val documentSnapshot = productsCollection.document(idSql).get().await()
-            documentSnapshot.toObject(Product::class.java)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            null
+    suspend fun getProductById(productId: String?): Product? {
+        return productId?.let { productId ->
+            try {
+                val documentSnapshot = productsCollection.document(productId).get().await()
+                documentSnapshot.toObject(Product::class.java)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                null
+            }
         }
+
     }
 
     fun list(): Flow<List<Product>> {
-        // Esta implementación crea un Flow que actualiza la lista de usuarios
-        // cada vez que hay un cambio en la base de datos
         return callbackFlow {
 
             val listener = productsCollection
-                // Aquí viene la query,
-                // Se ordena por nombre de manera desceniente
                 .orderBy("nombre", Query.Direction.DESCENDING)
-                // Creamos un listener a la query para que se actualice siempre que haya cambios
                 .addSnapshotListener { snapshots, error ->
                     if (error != null) {
                         close(error)
@@ -59,14 +57,17 @@ class ProductRepository(val firestore: FirebaseFirestore) {
         }
     }
 
-    suspend fun updateProduct(idSql: String, product: Map<String, Any>): Boolean {
-        return try {
-            productsCollection.document(idSql).update(product).await()
-            true
-        } catch (e: Exception) {
-            e.printStackTrace()
-            false
-        }
+    suspend fun update(product: Product) {
+        productsCollection.document(product.idSql).update(
+            "nombre", product.nombre,
+            "numReferencia", product.numReferencia,
+            "stock", product.stock,
+            "fabricante", product.fabricante,
+            "material", product.material,
+            "garantia", product.garantia,
+            "precio", product.precio,
+            "createdAt", product.createdAt
+        ).await()
     }
 
     suspend fun deleteProduct(idSql: String): Boolean {
