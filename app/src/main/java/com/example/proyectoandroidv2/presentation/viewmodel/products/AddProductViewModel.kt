@@ -15,12 +15,6 @@ class AddProductViewModel(val addProductUseCase: AddProductsUseCase): ViewModel(
     )
     val product: StateFlow<Product> = _product
 
-    fun setIdSql(idSql: String) {
-        _product.value = _product.value.copy(
-            idSql = idSql
-        )
-    }
-
     fun setNombre(nombre: String) {
         _product.value = _product.value.copy(
             nombre = nombre
